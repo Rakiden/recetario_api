@@ -9,7 +9,7 @@ header("Content-Type: application/json; charset=UTF-8");
 define('DB_NAME','UZMZrLAgvJ');
 define('DB_USER','UZMZrLAgvJ');
 define('DB_PASSWORD','sxpAB2clyp');
-define('DB_HOST','https://remotefesfsmysql.com');
+define('DB_HOST','remotemysql.com');
 
 $mysqli = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
