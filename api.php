@@ -14,6 +14,8 @@ define('DB_HOST','https://remotemysql.com/phpmyadmin/sql.php');
 
 $mysqli = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
+
+
 $postjson = json_decode(file_get_contents('php://input'),true);
 if($postjson['aksi']=="register"){
     $password = md5($postjson['password']);
@@ -23,7 +25,10 @@ if($postjson['aksi']=="register"){
         username = '$postjson[username]',
         email = '$postjson[email]',
         password = '$password'
-    ") or trigger_error(mysql_error());
+    ");
+    if(!$query){
+        die(mysql_error());
+    }
     
     if($query) $result = json_encode(array('success'=>true));
     else $result = json_encode(array('success'=>false, 'msg'=>$query));
