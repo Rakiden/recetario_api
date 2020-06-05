@@ -26,7 +26,12 @@ if($postjson['aksi']=="register"){
     ");
     
     if($query) $result = json_encode(array('success'=>true));
-    else $result = json_encode(array('success'=>false, 'msg'=>"Error, please try again"));
+    else $result = json_encode(array('success'=>false, 'msg'=>"INSERT INTO user SET
+    name = '$postjson[name]',
+    last_name = '$postjson[last_name]',
+    username = '$postjson[username]',
+    email = '$postjson[email]'
+    password = '$password'"));
 
     echo $result;
   }
