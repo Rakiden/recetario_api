@@ -27,6 +27,10 @@ if($postjson['mode']=="register"){
         email = '$postjson[email]',
         password = '$password'
     ");
+
+    if(!$query){
+      die(mysql_error());
+    }
     
   if($query) $result = json_encode(array('success'=>true));
   else $result = json_encode(array('success'=>false, 'msg'=>$query));
