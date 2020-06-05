@@ -26,7 +26,7 @@ if($postjson['aksi']=="register"){
     ") or trigger_error(mysql_error());
     
     if($query) $result = json_encode(array('success'=>true));
-    else $result = json_encode(array('success'=>false, 'msg'=>"joder"));
+    else $result = json_encode(array('success'=>false, 'msg'=>$query));
 
     echo $result;
   }
