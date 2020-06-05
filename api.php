@@ -12,7 +12,7 @@ define('DB_USER','UZMZrLAgvJ');
 define('DB_PASSWORD','sxpAB2clyp');
 define('DB_HOST','https://remotefesfsmysql.com/phpmyadmin/sql.php');
 
-$mysqli = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+$mysqli = new mysql_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) or die(mysql_error());
 
 
 
@@ -26,9 +26,6 @@ if($postjson['aksi']=="register"){
         email = '$postjson[email]',
         password = '$password'
     ");
-    if($query){
-        die(mysql_error());
-    }
     
     if($query) $result = json_encode(array('success'=>true));
     else $result = json_encode(array('success'=>false, 'msg'=>$query));
