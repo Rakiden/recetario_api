@@ -21,7 +21,7 @@ if($postjson['aksi']=="register"){
         name = '$postjson[name]',
         last_name = '$postjson[last_name]',
         username = '$postjson[username]',
-        email = '$postjson[email]'
+        email = '$postjson[email]',
         password = '$password'
     ");
     
