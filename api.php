@@ -23,15 +23,10 @@ if($postjson['aksi']=="register"){
         username = '$postjson[username]',
         email = '$postjson[email]',
         password = '$password'
-    ");
+    ") or trigger_error(mysql_error());
     
     if($query) $result = json_encode(array('success'=>true));
-    else $result = json_encode(array('success'=>false, 'msg'=>"INSERT INTO user SET
-    name = '$postjson[name]',
-    last_name = '$postjson[last_name]',
-    username = '$postjson[username]',
-    email = '$postjson[email]',
-    password = '$password'"));
+    else $result = json_encode(array('success'=>false, 'msg'=>"joder"));
 
     echo $result;
   }
