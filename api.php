@@ -57,32 +57,5 @@ if($postjson['mode']=="register"){
   
   echo $result;
 
-}elseif($postjson['mode']=="addRecipe"){
-  $query1 = mysqli_query($mysqli, "SELECT * FROM master_user WHERE username='$postjson[username]' AND password = '$password'");
-  $query2 = mysqli_query($mysqli, "SELECT * FROM master_user WHERE email='$postjson[email]' AND password = '$password'");
-  
-  $check = mysqli_num_rows($query);
-
-  if($query1){
-    $check = mysqli_num_rows($query1);
-  }elseif($query2){
-    $check = mysqli_num_rows($query2);
-  }
-
-  if($check>0){
-      $data = mysqli_fetch_array($query);
-      $datauser = array(
-          'user_id' =>$data['user_id'], 
-          'username' =>$data['username'], 
-          'password' =>$data['password']
-      );
-      $result = json_encode(array('success'=>true,'result' => $datauser));
-      
-  }else{
-      $result = json_encode(array('success'=>false,'mgs' => "Nombre, Email o Contraseña incorrectos"));
-  }
-  
-  echo $result;
-
 }
 ?>
