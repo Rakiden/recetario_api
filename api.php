@@ -14,21 +14,19 @@ $mysqli = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
 $postjson = json_decode(file_get_contents('php://input'),true);
 if($postjson['mode']=="register"){
+  $password = md5($postjson['password']);
+  $query = mysqli_query($mysqli, "INSERT INTO user SET
+      name = '$postjson[name]',
+      last_name = '$postjson[last_name]',
+      username = '$postjson[username]',
+      email = '$postjson[email]',
+      password = '$password'
+  ");
 
-    $password = md5($postjson['password']);
-    $query = mysqli_query($mysqli, "INSERT INTO user SET
-        name = '$postjson[name]',
-        last_name = '$postjson[last_name]',
-        username = '$postjson[username]',
-        email = '$postjson[email]',
-        password = '$password'
-    ");
-    
   if($query) $result = json_encode(array('success'=>true));
   else $result = json_encode(array('success'=>false, 'msg'=>$"Error, intentelo de nuevo"));
 
   echo $result;
-
 }elseif($postjson['mode']=="login"){
   $password = md5($postjson['password']);
   $query1 = mysqli_query($mysqli, "SELECT * FROM master_user WHERE username='$postjson[username]' AND password = '$password'");
@@ -50,12 +48,10 @@ if($postjson['mode']=="register"){
           'password' =>$data['password']
       );
       $result = json_encode(array('success'=>true,'result' => $datauser));
-      
   }else{
       $result = json_encode(array('success'=>false,'mgs' => "Nombre, Email o Contraseña incorrectos"));
   }
   
   echo $result;
-
 }
 ?>
